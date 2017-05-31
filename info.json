@@ -1,0 +1,110 @@
+{
+    "json_version": 2,
+
+    "identity": {
+        "author": "vdomos", 
+        "author_email": "domos pt vesta at gmail.com", 
+        "tags": ["template"], 
+        "dependencies": [],
+        "description": "Domogik Template Plugin", 
+        "domogik_min_version": "0.5.0", 
+        "name": "template", 
+        "type": "plugin", 
+        "version": "0.1"
+    }, 
+
+    "products" : [],
+
+    "configuration": [
+        {
+            "description": "Sensor reading time in second",
+            "key": "updatetime",
+            "name" : "Sensor reading time",
+            "required": true,
+            "type": "integer",
+            "default": 60
+        }
+    ],
+
+    "device_types": {
+        "template.number": {
+            "id": "template.number",
+            "description": "Device return a random sensor number", 
+            "name": "Template Number",
+            "commands": [],
+            "sensors": ["number-sensor_template"],
+            "parameters": [
+                {
+                    "key": "interval1",
+                    "xpl": false,
+                    "description": "Low interval for random generator",
+                    "type": "integer",
+                    "default": 0
+                },
+                {
+                    "key": "interval2",
+                    "xpl": false,
+                    "description": "High interval for random generator",
+                    "type": "integer",
+                    "default": 100
+                }
+            ]
+        },
+        "template.switch": {
+            "id": "template.switch",
+            "description": "Script to execute a Action with a string parameter", 
+            "name": "Template Switch",
+            "commands": ["onoff-cmd_template"],
+            "sensors": ["onoff-sensor_template"],
+            "parameters": []
+        }
+    },
+
+    "commands": { 
+        "onoff-cmd_template" : {
+            "name" : "OnOff Template Cmd",
+            "return_confirmation" : true,
+            "parameters" : [
+                {
+                    "key" : "state",
+                    "data_type" : "DT_Switch",
+                    "conversion" : ""
+                }
+            ]
+        }
+    },
+
+    "sensors": {
+        "number-sensor_template": {
+            "name": "Number template Value",
+            "incremental" : false,
+            "data_type": "DT_Number",
+            "conversion": "",
+            "timeout" : 300,
+            "history": {
+                "store": true,
+                "duplicate" : true,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        },
+        "onoff-sensor_template": {
+            "name": "OnOff template state",
+            "incremental" : false,
+            "data_type": "DT_Switch",
+            "conversion": "",
+            "timeout" : 0,
+            "history": {
+                "store": true,
+                "duplicate" : true,
+                "max": 0,
+                "expire": 0,
+                "round_value": 0
+            }
+        }
+    },
+    
+    "xpl_commands": {}, 
+    "xpl_stats": {}
+}
