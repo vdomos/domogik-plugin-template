@@ -3,9 +3,10 @@
 ## Purpose
 
 This is a simple plugin for Domogik : http://www.domogik.org an open source home automation solution.
+
 ￼This is just an example, a help to make a plugin for Domogik.
 
-Read the bin/lib script, there are a lot of comments to help, I hope.
+Read inside bin/lib scripts, there are a lot of comments to help, I hope.
 
 ## Documentation 
 
