@@ -2,9 +2,10 @@
 
 ## Purpose
 
-This is a package for Domogik : http://www.domogik.org
+This is a simple plugin for Domogik : http://www.domogik.org an open source home automation solution.
+￼This is just an example, a help to make a plugin for Domogik.
 
-Domogik is an open source home automation solution.
+Read the bin/lib script, there are a lot of comments to help, I hope.
 
 ## Documentation 
 
@@ -12,11 +13,7 @@ You can find the documentation source in the **docs/** folder. When the package 
 You may also find online documentation for this plugin. 
 You will be able to find the documentation url on 
 
-http://repo-public.domogik.org/dashboard
-
-or
-
-http://domogik-plugin-template.readthedocs.org/en/latest/index.html
+http://domogik-plugin-template.readthedocs.org/en/latest/index.html (TODO)
 
 
 ## Install the package
