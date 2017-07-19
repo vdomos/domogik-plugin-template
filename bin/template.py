@@ -92,6 +92,10 @@ class templateManager(Plugin):
         self.log.info(u"==> Add callback for new or changed devices.")
         self.register_cb_update_devices(self.reload_devices)
         
+        #self.log.info(u"==> Add devices detection test.")
+        #self.add_detected_device("template.number", "Mon device 1", "ref 1", "descrip 1", 15, 20)
+        #self.add_detected_device("template.switch", "Mon device 2", "ref 2", "descrip 2", "", "")
+        
         self.ready()
 
     # -------------------------------------------------------------------------------------------------
@@ -185,10 +189,28 @@ class templateManager(Plugin):
         """ Called when some devices are added/deleted/updated
         """
         self.log.info(u"==> Reload Device called")      # With n 'Global parameters', there are n calls
-        self.settemplateDevicesList(devices)
+        self.setTemplateDevicesList(devices)
         self.devices = devices
         self.sensors = self.get_sensors(devices)
 
+
+    # -------------------------------------------------------------------------------------------------
+    def add_detected_device(self, devicetype, name, ref, des, interval1, interval2):
+        data = {}
+        data["device_type"] = devicetype
+        data["name"] = name
+        data["reference"] = ref
+        data["description"] = des
+        data["global"] = []
+        if devicetype == "template.number":
+            data["global"].append({"key": "interval1", "value": interval1})
+            data["global"].append({"key": "interval2", "value": interval2})
+        data["xpl"] = []
+        data["xpl_stats"] = []
+        data["xpl_commands"] = []
+            
+        self.device_detected(data)
+        
 
 # -------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
