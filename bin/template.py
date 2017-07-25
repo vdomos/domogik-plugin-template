@@ -177,7 +177,7 @@ class templateManager(Plugin):
         data[self.sensors[device_id][sensorid_name]] = value                    # data['sensor_id'] = value
         # sensorid_name = "number-sensor_template" | "onoff-sensor_template" (declared in info.json)
         try:
-            self.log.info("==> SEND sensor value '%s' by MQ" % format(data))    # {u'sensor_id': u'value'} => {159: u'1'}
+            self.log.info(u"==> SEND sensor value '%s' by MQ" % format(data))    # {u'sensor_id': u'value'} => {159: u'1'}
             self._pub.send_event('client.sensor', data)
         except:
             # We ignore the message if some values are not correct ...

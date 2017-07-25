@@ -87,7 +87,7 @@ class Template:
                     # Read sensor (in this template plugin, it's only un random generate numer)
                     value = random.randint(interval1, interval2)
                     
-                    self.log.info("==> UPDATE Sensor for device '%s' with value '%s' " % (name, value))
+                    self.log.info(u"==> UPDATE Sensor for device '%s' with value '%s' " % (name, value))
                     self.send(deviceid, "number-sensor_template", value)    # Update sensor value in Domogik, "number-sensor_template" is the sensorid_name in info.json
                     self.log.info(u"==> WAIT {0} seconds before the next sensor reading for device '{1}' ".format(self.updatetime, name))
                     self.stopplugin.wait(self.updatetime)                   # Sleep "self.updatetime" seconds or exit if plugin is stopped.

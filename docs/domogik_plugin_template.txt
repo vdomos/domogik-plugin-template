@@ -1,0 +1,19 @@
+﻿domogik_plugin_template
+
+Configuration du plugin:
+    Temp de raffraichissement des senseurs en secondes
+    
+device_type:
+    1 sensor type DT_Number
+    1 command type DT_OnOff + sensor DT_OnOff
+Sensor:
+    Senseur génère nombre aléatoire  a > n > b
+    paramètre a (int)
+    parmètre b (int)
+        >>> import random
+        >>> print(random.randint(a,b))
+Command:
+    Datatype "on/off" testable dans l'admin
+    Envoie message WARNING dans log pour etre visible dans page "Advanced" ?
+    Met à jour sensor associé.
+
