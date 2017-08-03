@@ -100,14 +100,14 @@ class templateManager(Plugin):
             Generates a devices list with the necessary parameters;
             This list will be use in readTemplateSensorsLoop or on_mdp_request to retrieve some informations of sensors/command
         """
-        self.log.info(u"==> Set plugin devices list ...")
+        self.log.info(u"==> Set plugin devices list ...")               # Create a plugin device list to have the necessary information by device id
         self.templatedevices_list = {}        
         for a_device in devices:    # For each device
             self.log.debug(u"a_device:   %s" % format(a_device))
             if a_device["device_type_id"] == "template.number":  
                 interval1 = self.get_parameter(a_device, "interval1") 
                 interval2 = self.get_parameter(a_device, "interval2") 
-                self.templatedevices_list.update(
+                self.templatedevices_list.update(                       # Update device list with 'id', 'device type' and parameters only for "template.number" device type. 
                     {a_device["id"] : 
                         { 'name': a_device["name"], 
                           'devicetype': a_device["device_type_id"],
@@ -116,7 +116,7 @@ class templateManager(Plugin):
                         }
                     })
             else:
-                self.templatedevices_list.update(
+                self.templatedevices_list.update(                       # Update devices list with 'id', 'device type'
                     {a_device["id"] : 
                         { 'name': a_device["name"], 
                           'devicetype': a_device["device_type_id"]
@@ -134,7 +134,8 @@ class templateManager(Plugin):
     
         if msg.get_action() == "client.cmd":                                    # If command received
             data = msg.get_data()                                               # Exemple: data='{u'state': u'1', u'command_id': 7, u'device_id': 40}'
-            devicename = self.templatedevices_list[data["device_id"]]["name"]
+            # data return the device'id and command'id
+            devicename = self.templatedevices_list[data["device_id"]]["name"]       # With device list set above we can retrieve some information of the device
             devicetype = self.templatedevices_list[data["device_id"]]["devicetype"]
             self.log.info(u"==> Received command '%s' for device '%s'" % (format(data),devicename))  
             if data["device_id"] not in self.templatedevices_list:
@@ -147,7 +148,7 @@ class templateManager(Plugin):
                 if devicetype == "template.switch":                                  # Device type name,  (declared in info.json)
                     status, reason = self.templateMng.execTemplateCommand(data)      # Execute command in plugin lib function
                     # Reply ACK to received command
-                    self.send_rep_ack(status, reason, data['command_id'], devicename) ;
+                    self.send_rep_ack(status, reason, data['command_id'], devicename) ;   # Reply ACK for received command
                 else:
                     self.send_rep_ack(False, u"Unknow devicetype", data['command_id'], devicename) ; # There is only one command device in this plugin
 
